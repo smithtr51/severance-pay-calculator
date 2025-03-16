@@ -1,14 +1,6 @@
 import React, { useState } from "react";
 
-function SeveranceCalculator() {
-  const [basicPay, setBasicPay] = useState(0);
-  const [yearsService, setYearsService] = useState(0);
-  const [monthsService, setMonthsService] = useState(0);
-  const [age, setAge] = useState(0);
-  const [monthsAge, setMonthsAge] = useState(0);
-  const [result, setResult] = useState(null);
-
-  const calculateSeverance = () => {
+const calculateSeverance = () => {
     const pay = parseFloat(basicPay);
     const years = parseInt(yearsService, 10);
     const months = parseInt(monthsService, 10);
@@ -16,9 +8,32 @@ function SeveranceCalculator() {
     const ageMonths = parseInt(monthsAge, 10);
 
     if ([pay, years, months, empAge, ageMonths].some(isNaN)) {
-      alert(\"Please enter valid numbers for all fields.\");
-      return;
+        alert("Please enter valid numbers for all fields.");
+        return;
     }
+
+    const weeklyRate = years < 10 ? pay : 2 * pay;
+
+    const basicAllowance =
+        Math.min(years, 10) * pay +
+        Math.max(0, years - 10) * 2 * pay +
+        Math.floor(months / 3) * 0.25 * weeklyRate;
+
+    const totalQuarters = Math.max(0, (empAge - 40) * 4 + Math.floor(ageMonths / 3));
+    const ageAdjustment = totalQuarters * 0.025 * basicAllowance;
+
+    const totalSeverance = basicAllowance + ageAdjustment;
+    const weeksPaid = totalSeverance / pay;
+    const cappedSeverance = Math.min(totalSeverance, 52 * pay);
+
+    setResult({
+        basicAllowance,
+        ageAdjustment,
+        totalSeverance,
+        weeksPaid,
+        cappedSeverance,
+    });
+};
 
     const weeklyRate = years < 10 ? pay : 2 * pay;
 
