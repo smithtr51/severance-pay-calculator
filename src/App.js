@@ -1,31 +1,39 @@
 import React, { useState } from "react";
 
-function SeveranceCalculator() {
-    const [basicPay, setBasicPay] = useState("");
-    const [yearsService, setYearsService] = useState("");
-    const [monthsService, setMonthsService] = useState("");
-    const [age, setAge] = useState("");
-    const [monthsAge, setMonthsAge] = useState("");
-    const [result, setResult] = useState(null);
+const calculateSeverance = () => {
+    const pay = parseFloat(basicPay);
+    const years = parseInt(yearsService, 10);
+    const months = parseInt(monthsService, 10);
+    const empAge = parseInt(age, 10);
+    const ageMonths = parseInt(monthsAge, 10);
 
-    const calculateSeverance = () => {
-        let basicAllowance = Math.min(10, yearsService) * basicPay +
-            Math.max(0, yearsService - 10) * 2 * basicPay +
-            (monthsService / 3) * 0.25 * (yearsService < 10 ? basicPay : 2 * basicPay);
+    if ([pay, years, months, empAge, ageMonths].some(isNaN)) {
+        alert("Please enter valid numeric values for all fields.");
+        return;
+    }
 
-        let ageAdjustment = Math.floor((age - 40) * 4 + monthsAge / 3) * 0.025 * basicAllowance;
-        let totalSeverance = basicAllowance + ageAdjustment;
-        let weeksPaid = totalSeverance / basicPay;
-        let cappedSeverance = Math.min(totalSeverance, 52 * basicPay);
+    const weeklyRate = years < 10 ? pay : 2 * pay;
 
-        setResult({
-            basicAllowance,
-            ageAdjustment,
-            totalSeverance,
-            weeksPaid,
-            cappedSeverance,
-        });
-    };
+    const basicAllowance =
+        (Math.min(years, 10) * pay) +
+        (Math.max(0, years - 10) * 2 * pay) +
+        (Math.floor(months / 3) * 0.25 * weeklyRate);
+
+    const totalQuarters = ((empAge - 40) * 4) + Math.floor(ageMonths / 3);
+    const ageAdjustment = totalQuarters > 0 ? totalQuarters * 0.025 * basicAllowance : 0;
+
+    const totalSeverance = basicAllowance + ageAdjustment;
+    const weeksPaid = totalSeverance / pay;
+    const cappedSeverance = Math.min(totalSeverance, 52 * pay);
+
+    setResult({
+        basicAllowance,
+        ageAdjustment,
+        totalSeverance,
+        weeksPaid,
+        cappedSeverance,
+    });
+};
 
     return (
         <div>
