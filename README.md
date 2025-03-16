@@ -1,131 +1,70 @@
-# severance-pay-calculator
-Severance Pay Calculator
+# Getting Started with Create React App
 
-Overview
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-This project is a Severance Pay Calculator built with React and deployed on AWS Amplify. The application calculates severance pay based on employee input, considering factors such as years of service, additional months, age, and other adjustments.
+## Available Scripts
 
-Features
+In the project directory, you can run:
 
-User-friendly UI built with React
+### `npm start`
 
-Real-time severance pay calculations
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-Deployed using AWS Amplify for scalability
+The page will reload when you make changes.\
+You may also see any lint errors in the console.
 
-Backend API (optional) using AWS Lambda and API Gateway
+### `npm test`
 
-Tech Stack
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-Frontend: React.js (Vite for performance optimization)
+### `npm run build`
 
-Backend (optional): Node.js/Express or Python/Flask (AWS Lambda)
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-Hosting & Deployment: AWS Amplify
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
 
-CI/CD: GitHub Actions for automated deployment
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-Setup Instructions
+### `npm run eject`
 
-Prerequisites
+**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-Node.js installed (Download Node.js)
+If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-AWS CLI installed (AWS CLI Setup)
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-GitHub account for repository hosting
+You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-Clone Repository
+## Learn More
 
- git clone https://github.com/yourusername/severance-pay-calculator.git
- cd severance-pay-calculator
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-Install Dependencies
+To learn React, check out the [React documentation](https://reactjs.org/).
 
-npm install
+### Code Splitting
 
-Run Locally
+This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-npm run dev
+### Analyzing the Bundle Size
 
-This will start the application on http://localhost:3000.
+This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-Deploy to AWS
+### Making a Progressive Web App
 
-1. Initialize AWS Amplify
+This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-amplify init
+### Advanced Configuration
 
-Follow the CLI prompts to configure the project.
+This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
-2. Deploy to AWS
+### Deployment
 
-amplify publish
+This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
-This will deploy your frontend to an AWS Amplify-hosted domain.
+### `npm run build` fails to minify
 
-API (Optional Backend)
-
-If a backend API is required, deploy a Lambda function with API Gateway:
-
-Create API with AWS Lambda
-
-amplify add function
-
-Deploy API
-
-amplify push
-
-CI/CD with GitHub Actions
-
-To automate deployments, add the following GitHub Actions workflow (.github/workflows/deploy.yml):
-
-name: Deploy to AWS
-
-on:
-  push:
-    branches:
-      - main
-
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v2
-      - name: Install Dependencies
-        run: npm install
-      - name: Build React App
-        run: npm run build
-      - name: Deploy to AWS Amplify
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        run: |
-          aws s3 sync build/ s3://your-s3-bucket --delete
-          aws cloudfront create-invalidation --distribution-id YOUR_CLOUDFRONT_ID --paths "/*"
-
-Accessing the Application
-
-Once deployed, access the application at:
-
-https://your-app.amplifyapp.com
-
-Contributing
-
-Fork the repository.
-
-Create a new feature branch (git checkout -b feature-branch).
-
-Commit changes (git commit -m "Add feature").
-
-Push to the branch (git push origin feature-branch).
-
-Create a Pull Request.
-
-License
-
-This project is licensed under the MIT License. See LICENSE for details.
-
-🚀 Happy Coding!
-
+This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
