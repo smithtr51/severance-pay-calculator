@@ -1,4 +1,4 @@
-import React, { useState } from \"react\";
+import React, { useState } from "react";
 
 function SeveranceCalculator() {
   const [basicPay, setBasicPay] = useState(0);
