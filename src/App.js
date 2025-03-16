@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from \"react\";
 
 function SeveranceCalculator() {
   const [basicPay, setBasicPay] = useState(0);
@@ -16,7 +16,7 @@ function SeveranceCalculator() {
     const ageMonths = parseInt(monthsAge, 10);
 
     if ([pay, years, months, empAge, ageMonths].some(isNaN)) {
-      alert("Please enter valid numbers for all fields.");
+      alert(\"Please enter valid numbers for all fields.\");
       return;
     }
 
@@ -42,76 +42,80 @@ function SeveranceCalculator() {
   };
 
   return (
-    <div className="max-w-xl mx-auto p-6 shadow-md rounded-lg">
-      <h1 className="text-2xl font-semibold mb-4">Severance Pay Calculator</h1>
+    <div className=\"max-w-xl mx-auto p-4 shadow-md rounded-lg bg-white\">
+      <h1 className=\"text-xl font-semibold mb-3\">Severance Calculator</h1>
 
-      <label className="block mb-2">
-        Basic Pay (Weekly):
+      <div className=\"space-y-3\">
         <input
-          type="number"
+          type=\"number\"
+          inputMode=\"decimal\"
+          placeholder=\"Basic Pay (Weekly)\"
           value={basicPay}
           onChange={(e) => setBasicPay(e.target.value)}
-          className="border p-2 rounded w-full"
+          className=\"border rounded p-2 w-full text-base\"
         />
-      </label>
 
-      <label className="block mb-2">
-        Years of Service:
         <input
-          type="number"
+          type=\"number\"
+          inputMode=\"numeric\"
+          placeholder=\"Years of Service\"
           value={yearsService}
           onChange={(e) => setYearsService(e.target.value)}
-          className="border p-2 rounded w-full"
+          className=\"border rounded p-2 w-full text-base\"
         />
-      </label>
 
-      <label className="block mb-2">
-        Additional Months:
         <input
-          type="number"
+          type=\"number\"
+          inputMode=\"numeric\"
+          placeholder=\"Additional Months\"
           value={monthsService}
           onChange={(e) => setMonthsService(e.target.value)}
-          className="border p-2 rounded w-full"
+          className=\"border rounded p-2 w-full text-base\"
         />
-      </label>
 
-      <label className="block mb-2">
-        Age:
         <input
-          type="number"
+          type=\"number\"
+          inputMode=\"numeric\"
+          placeholder=\"Age\"
           value={age}
           onChange={(e) => setAge(e.target.value)}
-          className="border p-2 rounded w-full"
+          className=\"border rounded p-2 w-full text-base\"
         />
-      </label>
 
-      <label className="block mb-4">
-        Additional Age Months:
         <input
-          type="number"
+          type=\"number\"
+          inputMode=\"numeric\"
+          placeholder=\"Additional Age Months\"
           value={monthsAge}
           onChange={(e) => setMonthsAge(e.target.value)}
-          className="border p-2 rounded w-full"
+          className=\"border rounded p-2 w-full text-base\"
         />
-      </label>
 
-      <button
-        onClick={calculateSeverance}
-        className="bg-blue-500 text-white p-2 rounded hover:bg-blue-600"
-      >
-        Calculate
-      </button>
+        <button
+          onClick={calculateSeverance}
+          className=\"bg-blue-500 text-white p-3 rounded-lg w-full text-base\"
+        >
+          Calculate
+        </button>
+      </div>
 
       {result && (
-        <div className="mt-6 bg-gray-100 p-4 rounded">
-          <h2 className="font-semibold text-xl mb-2">Results</h2>
+        <div className=\"mt-4 p-3 bg-gray-100 rounded-lg\">
+          <h2 className=\"text-lg font-medium mb-2\">Results</h2>
           <p>Basic Allowance: ${result.basicAllowance.toFixed(2)}</p>
           <p>Age Adjustment: ${result.ageAdjustment.toFixed(2)}</p>
-          <p>Total Severance Pay: ${result.totalSeverance.toFixed(2)}</p>
+          <p>Total Severance: ${result.totalSeverance.toFixed(2)}</p>
           <p>Weeks Paid: {result.weeksPaid.toFixed(2)}</p>
           <p>Capped Severance: ${result.cappedSeverance.toFixed(2)}</p>
         </div>
-      )}
+      </div>
+
+      <button
+        onClick={calculateSeverance}
+        className=\"w-full mt-4 bg-blue-500 text-white py-2 rounded-lg font-medium active:bg-blue-600\"
+      >
+        Calculate
+      </button>
     </div>
   );
 }
