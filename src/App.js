@@ -1,5 +1,3 @@
-import React, { useState } from "react";
-
 const calculateSeverance = () => {
     const pay = parseFloat(basicPay);
     const years = parseInt(yearsService, 10);
@@ -34,29 +32,6 @@ const calculateSeverance = () => {
         cappedSeverance,
     });
 };
-
-    const weeklyRate = years < 10 ? pay : 2 * pay;
-
-    const basicAllowance =
-      Math.min(years, 10) * pay +
-      Math.max(0, years - 10) * 2 * pay +
-      Math.floor(months / 3) * 0.25 * weeklyRate;
-
-    const totalQuarters = Math.max(0, (empAge - 40) * 4 + Math.floor(ageMonths / 3));
-    const ageAdjustment = totalQuarters * 0.025 * basicAllowance;
-
-    const totalSeverance = basicAllowance + ageAdjustment;
-    const weeksPaid = totalSeverance / pay;
-    const cappedSeverance = Math.min(totalSeverance, 52 * pay);
-
-    setResult({
-      basicAllowance,
-      ageAdjustment,
-      totalSeverance,
-      weeksPaid,
-      cappedSeverance,
-    });
-  };
 
   return (
     <div className=\"max-w-xl mx-auto p-4 shadow-md rounded-lg bg-white\">
